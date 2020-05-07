@@ -30,7 +30,7 @@ export class AppComponent implements OnInit {
         .then((res: any) => {
           // Success
           this.data = res.map((response: any) => {
-            return response.json() as Job;
+            return new Job();
           });
           resolve();
         },
