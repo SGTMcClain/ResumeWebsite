@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Job } from './jobs/job';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 
@@ -7,7 +7,7 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'resume-website';
 
   // TODO: Remove after test
@@ -15,7 +15,9 @@ export class AppComponent {
   data = [];
 
   constructor(private http: HttpClient) { }
-
+  ngOnInit(){
+    this.getJobs();
+  }
   // get("/api/jobs")
 
   // Modified for Angular 9 using https://www.positronx.io/angular-promises-example-manage-http-requests/

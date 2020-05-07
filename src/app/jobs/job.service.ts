@@ -14,27 +14,27 @@ export class JobService {
   // get("/api/jobs")
 
   // Modified for Angular 9 using https://www.positronx.io/angular-promises-example-manage-http-requests/
-  getJobs(){
-    const promise = new Promise((resolve, reject) => {
-      const apiURL = this.jobsUrl;
-      this.http
-        .get<Job[]>(apiURL)
-        .toPromise()
-        .then((res: any) => {
-          // Success
-          this.data = res.map((response: any) => {
-            return response.json() as Job;
-          });
-          resolve();
-        },
-        err => {
-          // Error
-          reject(err);
-        }
-      );
-    });
-    return promise;
-  }
+  // getJobs(){
+  //   const promise = new Promise((resolve, reject) => {
+  //     const apiURL = this.jobsUrl;
+  //     this.http
+  //       .get<Job[]>(apiURL)
+  //       .toPromise()
+  //       .then((res: any) => {
+  //         // Success
+  //         this.data = res.map((response: any) => {
+  //           return response.json() as Job;
+  //         });
+  //         resolve();
+  //       },
+  //       err => {
+  //         // Error
+  //         reject(err);
+  //       }
+  //     );
+  //   });
+  //   return promise;
+  // }
 
   // getJobs(): Promise<void | Job[]> {
   //   return this.http
