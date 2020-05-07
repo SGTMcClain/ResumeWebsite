@@ -47,11 +47,30 @@ function handleError(res, reason, message, code){
  */
 
 app.get("/api/jobs", function(req, res){
-
+    db.collection(JOB_COLLECTION).find({}).toArray(function(err, docs){
+        if(err){
+            handleError(res, err.message, "Failed to get jobs.");
+        } else {
+            res.status(200).json(docs);
+        }
+    })
 });
 
 app.post("/api/jobs", function(req, res){
+    var newJob = req.body;
+    newJob.createDate = new Date();
 
+    if(!req.body.title){
+        handleError(res, "Invalid user input", "Must provide a title", 400)
+    } else {
+        db.collection(JOB_COLLECTION).insertOne(newJob, function(err, doc){
+            if(err) {
+                handleError(res, err.message, "Failed to create new job.");
+            } else {
+                res.status(201).json(doc.ops[0]);
+            }
+        });
+    }
 });
 
 /**
