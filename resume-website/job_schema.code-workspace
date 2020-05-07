@@ -1,0 +1,14 @@
+{
+    "_id": <ObjectId>,
+    "title": <string>,
+    "employmentType": <enum>, // Full-time, Part-time, Self-Employed, Freelance, Contract, Internship, Apprenticeship, Volunteer
+    "company": <string>,
+    "location": {
+        "country": <string>, // Eventually and enum of all available countries
+        "state" : <string>, //
+        "city": <string>, // eventually city based on country and state
+    },
+    "startDate": <date>,
+    "endDate": <date>,
+    "Description": <string>
+}
