@@ -81,15 +81,37 @@ app.post("/api/jobs", function(req, res){
  */
 
 app.get("/api/contacts/:id", function(req, res) {
-
+    db.collection(JOB_COLLECTION).findOne({_id: new ObjectID(req.params.id)}, function(err, doc){
+        if (err) {
+            handleError(res, err.message, "Failed to get job");
+        } else {
+            res.status(200).json(doc);
+        }
+    });
 });
 
 app.put("/api/contacts/:id", function(req, res){
+    var updateDoc = req.body;
+    delete updateDoc._id;
 
+    db.collection(JOB_COLLECTION).updateOne({_id: new ObjectID(req.params.id)}, updateDoc, function(err, doc) {
+        if(err){
+            handleError(res, err.message, "Failed to get job");
+        } else {
+            updateDoc._id = req.params.id;
+            res.status(200).json(updateDoc);
+        }
+    })
 });
 
 app.delete("/api/contacts/:id", function(req, res){
-
+    db.collection(JOB_COLLECTION).deleteOne({_id: new ObjectID(req.params.id)}, function(err, result) {
+        if (err) {
+          handleError(res, err.message, "Failed to delete job");
+        } else {
+          res.status(200).json(req.params.id);
+        }
+      });
 });
 
 // TODO: about, education, certifications, skills, accomplishments, organizations
