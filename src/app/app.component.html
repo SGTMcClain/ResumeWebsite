@@ -300,6 +300,24 @@
 
 <!-- Toolbar -->
 <div class="toolbar" role="banner">
+
+  <table class="table table-striped">
+    <thead>
+      <tr class="table-info">
+        <th scope="col">#</th>
+        <th scope="col">Title</th>
+        <th scope="col">Company</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let result of data">
+        <th scope="row">{{result.id}}</th>
+        <td>{{result.title}}</td>
+        <td>{{result.company}}</td>
+      </tr>
+    </tbody>
+  </table>
+
   <img
     width="40"
     alt="Angular Logo"
